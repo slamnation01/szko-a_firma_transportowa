@@ -5,7 +5,7 @@ namespace TransportDB
 {
     public class TransportDBContext : DbContext
     {
-        public TransportDBContext() : base("PerolStationDB")
+        public TransportDBContext() : base("TransportDB")
         {
 
         }

@@ -37,10 +37,17 @@ namespace Transport
                 roleManager.Create(role);
             }
 
-            if (!roleManager.RoleExists("Employee"))
+            if (!roleManager.RoleExists("Secretary"))
             {
                 var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
-                role.Name = "Employee";
+                role.Name = "Secretary";
+                roleManager.Create(role);
+            }
+
+            if (!roleManager.RoleExists("Driver"))
+            {
+                var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
+                role.Name = "Driver";
                 roleManager.Create(role);
             }
 

@@ -16,18 +16,42 @@ namespace Transport.Models
             // Add custom user claims here
             return userIdentity;
         }
+
+        public virtual UserInfo UserInformation { get; set; }
+    }
+
+    public class UserInfo
+    {
+        public int Id { get; set; }
+
+        public virtual ApplicationUser ApplicationUser { get; set; }
+
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("TransportIdentity", throwIfV1Schema: false)
         {
         }
 
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
+        }
+
+        public System.Data.Entity.DbSet<UserInfo> UserInformation { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<ApplicationUser>()
+                .HasOptional(m => m.UserInformation)
+                .WithRequired(m => m.ApplicationUser)
+                .Map(p => p.MapKey("UserInfo_Id"));
         }
     }
 }
