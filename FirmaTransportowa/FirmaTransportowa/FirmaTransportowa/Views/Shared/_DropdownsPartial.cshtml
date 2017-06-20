@@ -1,0 +1,22 @@
+﻿@{
+    ViewBag.Title = "_DropdownsPartial";
+}
+
+@if (Request.IsAuthenticated && (User.IsInRole("Owner") || User.IsInRole("Admin")))
+{
+    <ul class="nav navbar-nav justify-content-start">
+        <li class="dropdown nav-item">
+            <a href="#" data-toggle="dropdown" role="button" aria-haspopup="true"
+               aria-expanded="false" class="dropdown-toggle nav-link">Narzędzia szefa<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li class="dropdown-item">@Html.ActionLink("Role Manager", "Index", "Roles", null, new { @class = "dropdown-item" })</li>
+                <li class="dropdown-item">
+                    <a href="~/Areas/BusRoutes/RoutesList.aspx" class="dropdown-item">Zarządzanie trasami</a>
+                </li>
+                @*<li class="dropdown-item">Raporty</li>
+                  <li class="dropdown-item">Dostawy</li>*@
+            </ul>
+        </li>
+    </ul>
+}
+
