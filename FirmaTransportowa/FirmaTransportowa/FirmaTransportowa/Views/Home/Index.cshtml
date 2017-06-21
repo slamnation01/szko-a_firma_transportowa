@@ -45,7 +45,8 @@
                         @foreach (var _hour in item.DepartDates)
                         {
                             var _dispHour = _hour.DDate.ToString("H:mm");
-                            <button type="button" class="btn btn-primary">@_dispHour</button>                          
+                            @*<button type="button" class="btn btn-primary" >@_dispHour</button>*@ 
+                            @Html.ActionLink(@_dispHour, "Reservation", "Reservations", null, new { @name = item.Name, @hour = _dispHour, @class="btn btn-primary", @style="margin-right:10px" })
                         }
                     </div>
                 </div>
