@@ -13,5 +13,6 @@ namespace TransportDB
         public DbSet<Buses> Buses { get; set; }
         public DbSet<BusRoute> Routes { get; set; }
         public DbSet<BusStop> Stops { get; set; }
+        public DbSet<Reservation> Reservations { get; set; }
     }
 }

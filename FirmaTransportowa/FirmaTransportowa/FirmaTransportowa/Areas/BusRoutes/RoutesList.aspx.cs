@@ -36,7 +36,7 @@ namespace FirmaTransportowa.Areas.BusRoutes
                 myConnection.Open();
 
                 SqlDataAdapter myCommand;
-                    myCommand = new SqlDataAdapter("SELECT Id, Name, Price, DepartDate FROM BusRoutes ORDER BY Id ASC", myConnection);
+                    myCommand = new SqlDataAdapter("SELECT Id, Name, Price, DepartHoursSimple FROM BusRoutes ORDER BY Id ASC", myConnection);
 
                 DataTable dt = new DataTable();
                 myCommand.Fill(dt);
@@ -93,7 +93,7 @@ namespace FirmaTransportowa.Areas.BusRoutes
 
         protected void BtnCreate1_Click(object sender, EventArgs e)
         {
-            Response.Redirect("CreatePackage.aspx");
+            Response.Redirect("AddRoutes.aspx");
         }
     }
 }

@@ -31,7 +31,7 @@
                                     <td>
                                         <asp:Label runat="server" ID="priceLabel" Text='<%# Eval("Price") %>' /></td>
                                     <td>
-                                        <asp:Label runat="server" ID="dateLabel" Text='<%# Eval("DepartDate") %>' /></td>
+                                        <asp:Label runat="server" ID="dateLabel" Text='<%# Eval("DepartHoursSimple") %>' /></td>
                                 </tr>
                             </tbody>
                         </ItemTemplate>

@@ -47,7 +47,7 @@ namespace FirmaTransportowa.Views.Aspx
             {
                myConnection.Open();
 
-                using (SqlCommand myCommand = new SqlCommand("SELECT Name, Price, DepartDate FROM BusRoutes WHERE ID=" + hfId.Value, myConnection))
+                using (SqlCommand myCommand = new SqlCommand("SELECT Name, Price, DepartHoursSimple FROM BusRoutes WHERE ID=" + hfId.Value, myConnection))
                 {
                     SqlDataReader reader = myCommand.ExecuteReader();
 
@@ -57,7 +57,7 @@ namespace FirmaTransportowa.Views.Aspx
                         txtRouteName.Text = reader.GetString(0);
                         txtRoutePrice.Text = Convert.ToString(reader.GetDecimal(1));
                         //var date = DateTime.ParseExact(Convert.ToString(reader.GetDateTime(2)),"dd/MM/yyyy H:mm", CultureInfo.InvariantCulture);
-                        textRouteDate.Text = (reader.GetDateTime(2)).ToString("dd/MM/yyyy H:mm");
+                        textRouteDate.Text = (reader.GetString(2));//.ToString("dd/MM/yyyy H:mm");
                     }
                 }
 
@@ -151,16 +151,16 @@ namespace FirmaTransportowa.Views.Aspx
                 try
                 {
                     if (hfId.Value.Equals(""))
-                        sqlCommandText = "INSERT INTO BusRoutes(Name, Price, DepartDate) VALUES (@RouteName, @RoutePrice, @RouteDepartDate);" + "Select Scope_Identity();";
+                        sqlCommandText = "INSERT INTO BusRoutes(Name, Price, DepartHoursSimple) VALUES (@RouteName, @RoutePrice, @RouteDepartHours);" + "Select Scope_Identity();";
                     else
-                        sqlCommandText = "UPDATE BusRoutes SET Name=@RouteName, Price=@RoutePrice, DepartDate=@RouteDepartDate WHERE Id=@Id";
+                        sqlCommandText = "UPDATE BusRoutes SET Name=@RouteName, Price=@RoutePrice, DepartHoursSimple=@RouteDepartHours WHERE Id=@Id";
 
                     sqlCommand.CommandText = sqlCommandText;
 
                     sqlCommand.Parameters.AddWithValue("@RouteName", txtRouteName.Text);
                     sqlCommand.Parameters.AddWithValue("@RoutePrice", Convert.ToDecimal(txtRoutePrice.Text));
-                    //sqlCommand.Parameters.AddWithValue("@RouteDepartDate", Convert.ToDateTime(textRouteDate.Text));
-                    sqlCommand.Parameters.AddWithValue("@RouteDepartDate", DateTime.ParseExact(textRouteDate.Text, "dd-MM-yyyy H:mm", CultureInfo.InvariantCulture));
+                    sqlCommand.Parameters.AddWithValue("@RouteDepartHours", textRouteDate.Text);
+                    //DateTime.ParseExact(, "dd-MM-yyyy H:mm", CultureInfo.InvariantCulture)
 
                     if (!hfId.Value.Equals(""))
                     {
@@ -169,11 +169,12 @@ namespace FirmaTransportowa.Views.Aspx
                     }
                     else
                     {
-                        hfId.Value = Convert.ToString(sqlCommand.ExecuteScalar());
+                        hfId.Value = Convert.ToString(sqlCommand.ExecuteScalar());                        
                     }
 
                     sqlCommand.Parameters.Clear();
 
+                    AddHours(connection, transaction);
                     SaveNewStops(connection, transaction);
                     EditStops(connection, transaction);
                     DeleteStops(connection, transaction);
@@ -198,6 +199,43 @@ namespace FirmaTransportowa.Views.Aspx
 
                 }
                 connection.Close();
+            }
+        }
+
+        protected void AddHours(SqlConnection _connection, SqlTransaction _transaction)
+        {
+            string sqlCommandText =
+                    "INSERT INTO DepartDates (DDate, BusRoute_ID) VALUES (@DDateVal, @RouteID)";
+
+            string[] _hours = (textRouteDate.Text).Split(',');
+
+            //zgnije za to w piekle ale nie mam juz czasu
+            DelHours(_connection, _transaction);
+
+            using (SqlCommand sqlCommand = new SqlCommand(sqlCommandText, _connection, _transaction))
+            {
+                foreach (string _hour in _hours)
+                {
+                    var _date = Convert.ToString(DateTime.Today);
+                    var _today = _date.Split(' ');
+                    string _finalDate = _today[0] + " " + _hour;
+                    sqlCommand.Parameters.AddWithValue("@DDateVal", DateTime.ParseExact(_finalDate, "yyyy-MM-dd H:mm", CultureInfo.InvariantCulture));
+                    sqlCommand.Parameters.AddWithValue("@RouteID", hfId.Value);
+
+                    sqlCommand.ExecuteNonQuery();
+                    sqlCommand.Parameters.Clear();
+                }
+            }
+        }
+
+        protected void DelHours(SqlConnection _connection, SqlTransaction _transaction)
+        {
+            string sqlCommandText =
+                   "DELETE FROM DepartDates WHERE BusRoute_Id=" + hfId.Value;
+
+            using (SqlCommand sqlCommand = new SqlCommand(sqlCommandText, _connection, _transaction))
+            {
+                sqlCommand.ExecuteNonQuery();
             }
         }
 

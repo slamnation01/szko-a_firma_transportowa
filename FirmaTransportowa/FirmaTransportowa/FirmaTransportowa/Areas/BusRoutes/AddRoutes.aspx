@@ -17,21 +17,21 @@
                     </div>
 
                     <div class="input-group">
-                        <span class="input-group-addon" id="basic-addon1">Nazwa:</span>
+                        <span class="input-group-addon" style="width:170px" id="basic-addon1">Nazwa:</span>
                         <asp:TextBox ID="txtRouteName" runat="server" class="form-control" aria-describedby="basic-addon1"></asp:TextBox>
                     </div>
 
                     <div class="input-group">
-                        <span class="input-group-addon" id="basic-addon2">Cena:</span>
+                        <span class="input-group-addon" style="width:170px" id="basic-addon2">Cena:</span>
                         <asp:TextBox ID="txtRoutePrice" runat="server" AutoPostBack="True" class="form-control" aria-describedby="basic-addon2"></asp:TextBox>
                         <asp:RegularExpressionValidator ID="RegularExpressionValidator3" ControlToValidate="txtRoutePrice" runat="server" ErrorMessage="Podaj poprawna cenę (część dziesiętną oddziel przecinkiem)" ValidationExpression="[0-9]?[0-9](\,[0-9][0-9]?)?"></asp:RegularExpressionValidator>
                     </div>
 
                     <div class="input-group">
-                        <span class="input-group-addon" id="basic-addon3">Data odjazdu:</span>
+                        <span class="input-group-addon" style="width:170px" id="basic-addon3">Godziny odjazdu:</span>
                         <asp:TextBox ID="textRouteDate" runat="server" class="form-control" aria-describedby="basic-addon3"></asp:TextBox>
-                        <asp:RegularExpressionValidator ID="RegularExpressionValidator4" ControlToValidate="textRouteDate" runat="server" ErrorMessage="Podaj datę w formacie dd-mm-yyy H:mm" ValidationExpression="^([1-9]|([012][0-9])|(3[01]))-([0]{0,1}[1-9]|1[012])-\d\d\d\d [012]{0,1}[0-9]:[0-6][0-9]$"></asp:RegularExpressionValidator>
-                    </div>
+                        <asp:RegularExpressionValidator ID="RegularExpressionValidator4" ControlToValidate="textRouteDate" runat="server" ErrorMessage="Podaj godziny w formacie H:mm oddzielone przecinkami" ValidationExpression="[0-2]?[0-9]:[0-5][0-9],?[0-2]?[0-9]?:?[0-5]?[0-9]?,?[0-2]?[0-9]?:?[0-5]?[0-9]?,?[0-2]?[0-9]?:?[0-5]?[0-9]?,?[0-2]?[0-9]?:?[0-5]?[0-9]?,?[0-2]?[0-9]?:?[0-5]?[0-9]?,?[0-2]?[0-9]?:?[0-5]?[0-9]?"></asp:RegularExpressionValidator>
+                    </div>                                                                                                                                                                                                          <%--^([1-9]|([012][0-9])|(3[01]))-([0]{0,1}[1-9]|1[012])-\d\d\d\d [012]{0,1}[0-9]:[0-6][0-9]$"--%>
                 </div>
 
                 <div style="margin-top: 20px">
@@ -58,7 +58,7 @@
                                     <td>
                                         <asp:TextBox runat="server" ID="rptEndStop" Text='<%# Eval("LastStop") %>' OnTextChanged="rptConsign_textChng" /></td>
                                     <td>
-                                        <asp:TextBox runat="server" ID="rptStopPrice" Text='<%# Eval("Price") %>' />
+                                        <asp:TextBox runat="server" ID="rptStopPrice" Text='<%# Eval("Price") %>' OnTextChanged="rptConsign_textChng" />
                                         <asp:RegularExpressionValidator ID="RegularExpressionValidator1" ControlToValidate="rptStopPrice" runat="server" ErrorMessage="Podaj poprawna cene" ValidationExpression="^\d+(\,\d\d)?$"></asp:RegularExpressionValidator>
                                     </td>
                                     <td>
