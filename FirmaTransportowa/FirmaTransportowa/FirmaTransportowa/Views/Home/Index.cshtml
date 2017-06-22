@@ -4,6 +4,35 @@
     ViewBag.Title = "Home Page";
 }
 
+@section scripts {
+    <script src="~/Scripts/jquery-3.1.1.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script type="text/javascript">
+        $(document).on('click', '#btn-1-img', function () {
+            $.get('@Url.Action("PartialHistory", "VATs")', {}, function (response) {
+                $("#VatsPartial").html(response);
+            });
+            $("#LoyalityPartial").hide();
+            $("#CarWashPartial").hide();
+            if ($("#VatsPartial").is(":visible")) {
+                $("#VatsPartial").hide();
+            }
+            else {
+                $("#VatsPartial").show();
+            }
+        });
+    </script>
+    <script type="text/javascript">
+        @*$('button.params').on('click', function(_name, _hour){
+            $.get('@Url.Action("Reservation", "Reservations", new { name=_name, hour=_hour })
+            )});*@
+        function sendParams(elem){
+            var _name = $(elem).attr("name");
+            var _hour = $(elem).attr("hour");
+            @Url.Action("Reservaton", "Reservations", new { name = _name, hour = _hour});
+        }
+    </script>
+}
 <div class="container">
     <div id="accordion" role="tablist" aria-multiselectable="true">
         @foreach (var item in Model)
@@ -44,9 +73,9 @@
                         <hr />
                         @foreach (var _hour in item.DepartDates)
                         {
-                            var _dispHour = _hour.DDate.ToString("H:mm");
-                            @*<button type="button" class="btn btn-primary" >@_dispHour</button>*@ 
-                            @Html.ActionLink(@_dispHour, "Reservation", "Reservations", null, new { @name = item.Name, @hour = _dispHour, @class="btn btn-primary", @style="margin-right:10px" })
+                            var _dispHour = _hour.DDate.ToString("H:mm");                                            //onclick="sendParams($(this).attr('name'))                                           
+                            <button type="button" class="btn btn-primary params" name="@item.Name" hour="@_dispHour" onclick="sendParams(this)">@_dispHour</button>
+                            @*@Html.ActionLink(@_dispHour, "Reservation", "Reservations", null, new { @id=item.Id, @name = item.Name, @hour = _dispHour, @class="btn btn-primary", @style="margin-right:10px" })*@
                         }
                     </div>
                 </div>

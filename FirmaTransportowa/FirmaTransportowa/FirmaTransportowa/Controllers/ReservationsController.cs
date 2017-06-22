@@ -127,6 +127,7 @@ namespace FirmaTransportowa.Controllers
 
         public ActionResult Reservation(string name, string hour)
         {
+            var tst = Session["ValuePassedToButtonHandler"];
 
             return View();
         }
