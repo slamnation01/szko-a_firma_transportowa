@@ -8,12 +8,16 @@ using System.Web;
 using System.Web.Mvc;
 using DomainModel;
 using TransportDB;
+using Microsoft.AspNet.Identity;
+using FirmaTransportowa.Models;
+using System.Globalization;
 
 namespace FirmaTransportowa.Controllers
 {
     public class ReservationsController : Controller
     {
         private TransportDBContext db = new TransportDBContext();
+        private ApplicationDbContext identityDb = new ApplicationDbContext();
 
         // GET: Reservations
         public ActionResult Index()
@@ -127,9 +131,39 @@ namespace FirmaTransportowa.Controllers
 
         public ActionResult Reservation(string name, string hour)
         {
-            var tst = Session["ValuePassedToButtonHandler"];
+            var userId = User.Identity.GetUserId();
+            var user = identityDb.Users.FirstOrDefault(x => x.Id.Equals(userId));
+
+            ViewBag.Name = name;
+            ViewBag.Hour = hour;
+            ViewBag.Client = (user.FirstName + " " + user.LastName).ToString();
 
             return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult SaveReservation([Bind(Include = "Id,PassengerName")] Reservation reservation, string name, string hour, string date)
+        {
+            if (ModelState.IsValid)
+            {
+                var userId = User.Identity.GetUserId();
+                reservation.ClientID = userId;
+                var _user = identityDb.Users.FirstOrDefault(x => x.Id.Equals(userId));
+                reservation.ClientName = _user.FirstName + " " + _user.LastName;
+                reservation.RouteName = name;
+
+                string _dateHelper = date + " " + hour;
+                DateTime _finalDate = DateTime.ParseExact(_dateHelper, "dd-MM-yyyy H:mm", CultureInfo.InvariantCulture);
+
+                reservation.Date = _finalDate;
+
+                //db.Entry(reservation).State = EntityState.Modified;
+                db.Reservations.Add(reservation);
+                db.SaveChanges();
+            }
+
+            return RedirectToAction("Index", "Home", null);
         }
     }
 }

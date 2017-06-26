@@ -73,6 +73,10 @@
     <Compile Include="Migrations\201706212103281_Reservations.Designer.cs">
       <DependentUpon>201706212103281_Reservations.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706261755341_Reservation_ClientID.cs" />
+    <Compile Include="Migrations\201706261755341_Reservation_ClientID.Designer.cs">
+      <DependentUpon>201706261755341_Reservation_ClientID.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TransportDBContext.cs" />
@@ -105,6 +109,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201706212103281_Reservations.resx">
       <DependentUpon>201706212103281_Reservations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706261755341_Reservation_ClientID.resx">
+      <DependentUpon>201706261755341_Reservation_ClientID.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
