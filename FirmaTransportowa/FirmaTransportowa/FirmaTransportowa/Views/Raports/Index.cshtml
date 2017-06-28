@@ -1,0 +1,54 @@
+﻿@model IEnumerable<DomainModel.Raport>
+
+<h2>Raporty</h2>
+<br />
+
+<table class="table table-sm table-hover">
+    <thead class="thead-default">
+        <tr>
+            <th>
+                Data kursu:
+            </th>
+            <th>
+                Kierowca:
+            </th>
+            <th>
+                Trasa:
+            </th>
+            <th>
+                Ilość pasażerów:
+            </th>
+            <th>
+                Koszt paliwa:
+            </th>
+            <th>
+                Przejechany dystans:
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DriverId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RouteName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PassengersNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FuelCost)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Distance)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

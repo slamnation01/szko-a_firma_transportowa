@@ -12,5 +12,8 @@ namespace DomainModel
         public int PassengersNumber { get; set; }
         public decimal FuelCost { get; set; }
         public decimal Distance { get; set; }
+        public string DriverId { get; set; }
+        public string RouteName { get; set; }
+        public DateTime Date { get; set; }
     }
 }

@@ -179,6 +179,7 @@
     <Compile Include="Controllers\BusRoutesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\RaportsController.cs" />
     <Compile Include="Controllers\ReservationsController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -284,6 +285,11 @@
     <Content Include="Views\Reservations\ReservationHistory.cshtml" />
     <Content Include="Views\Reservations\List.cshtml" />
     <Content Include="Views\Reservations\ListDetail.cshtml" />
+    <Content Include="Views\Raports\Create.cshtml" />
+    <Content Include="Views\Raports\Delete.cshtml" />
+    <Content Include="Views\Raports\Details.cshtml" />
+    <Content Include="Views\Raports\Edit.cshtml" />
+    <Content Include="Views\Raports\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
