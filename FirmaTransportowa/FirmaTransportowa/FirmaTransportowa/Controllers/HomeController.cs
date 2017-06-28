@@ -27,8 +27,11 @@ namespace FirmaTransportowa.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            return View();
+        }
 
+        public ActionResult LoyalityProgram()
+        {
             return View();
         }
 

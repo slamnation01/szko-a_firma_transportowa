@@ -14,5 +14,6 @@ namespace DomainModel
         public string ClientName { get; set; }
         public string RouteName { get; set; }
         public DateTime Date { get; set; }
+        public int SeatsNumber { get; set; }
     }
 }

@@ -2,10 +2,59 @@
     ViewBag.Title = "_DropdownsPartial";
 }
 
+@if (Request.IsAuthenticated && (User.IsInRole("Client") || User.IsInRole("Admin")))
+{
+    <ul class="nav navbar-nav justify-content-start">
+        <li class="dropdown nav-item mr-auto">
+            <a href="#" data-toggle="dropdown" role="button" aria-haspopup="true"
+               aria-expanded="false" class="dropdown-toggle nav-link">Narzędzia<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li class="dropdown-item">@Html.ActionLink("Moje rezerwacje", "ReservationHistory", "Reservations", null, new { @class = "dropdown-item" })</li>
+                <li class="dropdown-item">@Html.ActionLink("Program lojalnościowy", "LoyalityProgram", "Home", null, new { @class = "dropdown-item" })</li>
+                @*<li class="dropdown-item">Raporty</li>
+                    <li class="dropdown-item">Dostawy</li>*@
+            </ul>
+        </li>
+    </ul>
+}
+
+@if (Request.IsAuthenticated && (User.IsInRole("Driver") || User.IsInRole("Admin")))
+{
+    <ul class="nav navbar-nav justify-content-start">
+        <li class="dropdown nav-item mr-auto">
+            <a href="#" data-toggle="dropdown" role="button" aria-haspopup="true"
+               aria-expanded="false" class="dropdown-toggle nav-link">Kierowcy<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li class="dropdown-item">@Html.ActionLink("Grafik", "Index", "Home", null, new { @class = "dropdown-item" })</li>
+                <li class="dropdown-item">@Html.ActionLink("Utwórz raport", "Index", "Home", null, new { @class = "dropdown-item" })</li>
+                <li class="dropdown-item">@Html.ActionLink("Sprawdź rezerwacje", "List", "Reservations", null, new { @class = "dropdown-item" })</li>
+                @*<li class="dropdown-item">Raporty</li>
+                    <li class="dropdown-item">Dostawy</li>*@
+            </ul>
+        </li>
+    </ul>
+}
+
+                            @if (Request.IsAuthenticated && (User.IsInRole("Secretary") || User.IsInRole("Admin")))
+{
+    <ul class="nav navbar-nav justify-content-start">
+        <li class="dropdown nav-item mr-auto">
+            <a href="#" data-toggle="dropdown" role="button" aria-haspopup="true"
+               aria-expanded="false" class="dropdown-toggle nav-link">Sekretariat<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li class="dropdown-item">@Html.ActionLink("Grafiki", "Index", "Home", null, new { @class = "dropdown-item" })</li>
+                <li class="dropdown-item">@Html.ActionLink("Raporty", "Index", "Home", null, new { @class = "dropdown-item" })</li>
+                @*<li class="dropdown-item">Raporty</li>
+                    <li class="dropdown-item">Dostawy</li>*@
+            </ul>
+        </li>
+    </ul>
+}
+
 @if (Request.IsAuthenticated && (User.IsInRole("Owner") || User.IsInRole("Admin")))
 {
     <ul class="nav navbar-nav justify-content-start">
-        <li class="dropdown nav-item">
+        <li class="dropdown nav-item mr-auto">
             <a href="#" data-toggle="dropdown" role="button" aria-haspopup="true"
                aria-expanded="false" class="dropdown-toggle nav-link">Narzędzia szefa<span class="caret"></span></a>
             <ul class="dropdown-menu">
@@ -19,4 +68,8 @@
         </li>
     </ul>
 }
+
+<ul class="nav navbar-nav justify-content-start">
+    <li class="nav-item ml-auto">@Html.ActionLink("O firmie", "About", "Home", routeValues: null, htmlAttributes: new { @class = "nav-item nav-link" })</li>
+</ul>
 

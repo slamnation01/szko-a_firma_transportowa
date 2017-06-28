@@ -1,0 +1,20 @@
+﻿@model DomainModel.Reservation
+
+@{
+    ViewBag.Title = "List";
+}
+
+@using (Html.BeginForm("ListDetail", "Reservations",
+                                new { date = @ViewBag.Date }, FormMethod.Post, null))
+{
+    <div class="form-group">
+        Data kursu:
+        <div class="col-md-10">
+            <input type="text" name="date" id="date" class="form-control" placeholder="dd-MM-yyyy H:mm" />
+        </div>
+    </div>
+
+    <p>Trasa: @Html.DropDownList("Trasy", (IEnumerable<SelectListItem>)ViewBag.Routes, "Wybierz ...")</p>
+
+    <p><input type="submit" value="Potwierdź" class="btn-primary" /></p>
+}

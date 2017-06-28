@@ -143,7 +143,7 @@ namespace FirmaTransportowa.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult SaveReservation([Bind(Include = "Id,PassengerName")] Reservation reservation, string name, string hour, string date)
+        public ActionResult SaveReservation([Bind(Include = "Id,PassengerName,SeatsNumber")] Reservation reservation, string name, string hour, string date)
         {
             if (ModelState.IsValid)
             {
@@ -158,12 +158,46 @@ namespace FirmaTransportowa.Controllers
 
                 reservation.Date = _finalDate;
 
-                //db.Entry(reservation).State = EntityState.Modified;
                 db.Reservations.Add(reservation);
                 db.SaveChanges();
             }
 
             return RedirectToAction("Index", "Home", null);
+        }
+
+        public ActionResult ReservationHistory()
+        {
+            var userId = User.Identity.GetUserId();
+            //var user = identityDb.Users.FirstOrDefault(x => x.Id.Equals(userId));
+
+            var res = from p in db.Reservations select p;
+            var _list = new List<Reservation>();
+
+            try
+            {
+                res = res.Where(x => x.ClientID == userId);
+                _list = res.ToList();
+            }
+            catch (Exception e) { }
+
+            return View(_list);
+        }
+
+        public ActionResult List()
+        {
+            var routesList = db.Routes.OrderBy(u => u.Name).ToList().Select(uu =>
+            new SelectListItem { Value = uu.Name.ToString(), Text = uu.Name }).ToList();
+            ViewBag.Routes = routesList;
+
+            return View();
+        }
+
+        public ActionResult ListDetail(string Trasy, string date)
+        {
+            DateTime finalDate = DateTime.ParseExact(date, "dd-MM-yyyy H:mm", CultureInfo.InvariantCulture);
+            var reservations = db.Reservations.Where(x => x.RouteName == Trasy).Where(x => x.Date == finalDate).ToList();
+
+            return View(reservations);
         }
     }
 }

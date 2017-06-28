@@ -77,6 +77,14 @@
     <Compile Include="Migrations\201706261755341_Reservation_ClientID.Designer.cs">
       <DependentUpon>201706261755341_Reservation_ClientID.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706282011186_Reservations adds.cs" />
+    <Compile Include="Migrations\201706282011186_Reservations adds.Designer.cs">
+      <DependentUpon>201706282011186_Reservations adds.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706282033474_Raports.cs" />
+    <Compile Include="Migrations\201706282033474_Raports.Designer.cs">
+      <DependentUpon>201706282033474_Raports.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TransportDBContext.cs" />
@@ -112,6 +120,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201706261755341_Reservation_ClientID.resx">
       <DependentUpon>201706261755341_Reservation_ClientID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706282011186_Reservations adds.resx">
+      <DependentUpon>201706282011186_Reservations adds.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706282033474_Raports.resx">
+      <DependentUpon>201706282033474_Raports.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

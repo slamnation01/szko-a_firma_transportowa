@@ -280,6 +280,10 @@
     <Content Include="Views\BusRoutes\Index.cshtml" />
     <Content Include="Views\Shared\_WebFormsMasterPage.master" />
     <Content Include="Views\Reservations\Reservation.cshtml" />
+    <Content Include="Views\Home\LoyalityProgram.cshtml" />
+    <Content Include="Views\Reservations\ReservationHistory.cshtml" />
+    <Content Include="Views\Reservations\List.cshtml" />
+    <Content Include="Views\Reservations\ListDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

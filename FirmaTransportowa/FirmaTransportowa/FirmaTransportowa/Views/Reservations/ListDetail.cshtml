@@ -1,0 +1,31 @@
+﻿@model IEnumerable<DomainModel.Reservation>
+
+
+@if (Model != null)
+{
+    if (Model.Any())
+    {
+        <table class="table table-sm table-hover">
+            <thead class="thead-default">
+                <tr>
+                    <th>Nazwisko pasażera</th>
+                    <th>Ilość miejsc</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.PassengerName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.SeatsNumber)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <h4>Brak rezerwacji do wyświetlenia</h4>
+    }
+
+}

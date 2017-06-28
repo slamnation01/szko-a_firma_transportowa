@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "LoyalityProgram";
+}
+
+@section scripts {
+    <script>
+        function myFunction() {
+            alert("Nie wystarczająca ilość punktów!");
+        }
+    </script>
+}
+
+
+<h3>Program lojalnościowy firmy DanPol</h3>
+
+<h5>Regulamin:</h5>
+<p>Nasza firma oferuje stałym klientom posiadającym konto na naszej stronie program lojalnościowy.
+    Klienci otrzymują punkty za przejechane kilometry, 1 punkt za każdy kilometr.
+    Po wykupieniu u kierowcy zarezerwowanego biletu klient otrzyma punkty na swoje konto w serwisie.</p>
+
+<br /><br />
+<p>500 punktów można wymienić na 50% zniżki na wybrany przejazd</p>
+<p>900 punktów można wymienić na darmowy bilet na wybrany przejazd.</p>
+
+<br /><br />
+<p>Poniżej znajduje się przycisk który pozwala wygenerować unikalny kod, który należy pokazać kierowcy aby odebrać zniżkę.</p>
+
+<p>Aktualna ilość punktów: <b>0</b></p>
+<button class="btn btn-default" onclick="myFunction()">Generuj kod</button>
