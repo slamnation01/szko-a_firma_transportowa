@@ -93,6 +93,10 @@
     <Compile Include="Migrations\201706282117245_Raport v2.0.Designer.cs">
       <DependentUpon>201706282117245_Raport v2.0.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706292016044_Schedules.cs" />
+    <Compile Include="Migrations\201706292016044_Schedules.Designer.cs">
+      <DependentUpon>201706292016044_Schedules.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TransportDBContext.cs" />
@@ -140,6 +144,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201706282117245_Raport v2.0.resx">
       <DependentUpon>201706282117245_Raport v2.0.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706292016044_Schedules.resx">
+      <DependentUpon>201706292016044_Schedules.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

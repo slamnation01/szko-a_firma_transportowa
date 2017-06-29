@@ -8,14 +8,14 @@
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
-<body>
+<body background="~/Resources/bus.png" bgproperties="fixed">
     <div class="navbar navbar-inverse bg-inverse fixed-top navbar-toggleable-sm">
         <div class="container">
             <button type="button" class="navbar-toggler float-right hidden-md-up"
                     data-toggle="collapse" data-target=".navbar-collapse">
                 ☰
             </button>
-            @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            @Html.ActionLink("DanPol", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
 
             @Html.Partial("_DropdownsPartial")
             @Html.Partial("_LoginPartial")

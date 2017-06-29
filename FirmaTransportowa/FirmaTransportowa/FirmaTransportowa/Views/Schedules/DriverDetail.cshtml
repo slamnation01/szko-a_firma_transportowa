@@ -1,0 +1,38 @@
+﻿@model IEnumerable<DomainModel.Schedule>
+
+
+@{
+    ViewBag.Title = "DriverDetail";
+}
+
+<h4>Dyspozycyjność kirowcy: @Html.Raw(ViewBag.User)</h4>
+
+<table class="table table-sm table-hover">
+    <thead class="thead-default">
+        <tr>
+            <th>Poniedziałek</th>
+            <th>Wtorek</th>
+            <th>Środa</th>
+            <th>Czwartek</th>
+            <th>Piątek</th>
+            <th>Sobota</th>
+            <th>Niedziela</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Monday)</td>
+                <td>@Html.DisplayFor(modelItem => item.Tuesday)</td>
+                <td>@Html.DisplayFor(modelItem => item.Wednesday)</td>
+                <td>@Html.DisplayFor(modelItem => item.Thursday)</td>
+                <td>@Html.DisplayFor(modelItem => item.Friday)</td>
+                <td>@Html.DisplayFor(modelItem => item.Saturday)</td>
+                <td>@Html.DisplayFor(modelItem => item.Sunday)</td>
+            </tr>  
+        }
+    </tbody>
+</table>
+
+@Html.ActionLink("Powrót", "Back", "Schedules", null, new { @class = "btn btn-primary" })

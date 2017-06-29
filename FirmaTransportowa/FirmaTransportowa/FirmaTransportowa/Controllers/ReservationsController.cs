@@ -134,11 +134,18 @@ namespace FirmaTransportowa.Controllers
             var userId = User.Identity.GetUserId();
             var user = identityDb.Users.FirstOrDefault(x => x.Id.Equals(userId));
 
-            ViewBag.Name = name;
-            ViewBag.Hour = hour;
-            ViewBag.Client = (user.FirstName + " " + user.LastName).ToString();
+            try
+            {
+                ViewBag.Name = name;
+                ViewBag.Hour = hour;
+                ViewBag.Client = (user.FirstName + " " + user.LastName).ToString();
 
-            return View();
+                return View();
+            }
+            catch(Exception e)
+            {
+                return RedirectToAction("Index", "Home");
+            }          
         }
 
         [HttpPost]

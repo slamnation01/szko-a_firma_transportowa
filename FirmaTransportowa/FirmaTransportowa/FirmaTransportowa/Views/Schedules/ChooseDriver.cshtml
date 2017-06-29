@@ -1,0 +1,13 @@
+﻿@model DomainModel.Schedule
+
+@{
+    ViewBag.Title = "ChooseDriver";
+}
+
+@using (Html.BeginForm("DriverDetail", "Schedules", FormMethod.Post, null))
+{
+    <p>Trasa: @Html.DropDownList("Kierowcy", (IEnumerable<SelectListItem>)ViewBag.Drivers, "Wybierz ...")</p>
+
+    <p><input type="submit" value="Potwierdź" class="btn-primary" /></p>
+}
+
