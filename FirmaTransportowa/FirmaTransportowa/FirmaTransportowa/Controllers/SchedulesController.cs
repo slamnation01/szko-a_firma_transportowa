@@ -136,19 +136,20 @@ namespace FirmaTransportowa.Controllers
         public ActionResult ChooseDriver()
         {
             var roleID = identityDb.Roles.Where(x => x.Name == "Driver").FirstOrDefault().Id;
-            var usersInRole = identityDb.Users.Where(m => m.Roles.Any(r => r.RoleId == roleID)).ToList().
+            //var roleID = identityDb.Roles.OrderBy(r => r.Name).FirstOrDefault().Id;           
+            var usersInRole = identityDb.Users.Where(m => m.Roles.Any(r => r.RoleId == roleID)).OrderBy(x => x.FirstName).ToList().
                 Select(x => new SelectListItem { Value = x.Id, Text = x.FirstName + " " + x.LastName }).ToList();
 
-            ViewBag.Driver = usersInRole;
+            ViewBag.Drivers = usersInRole;
 
             return View();
         }
 
-        public ActionResult DriverDetail(string Kierowcy)
+        public ActionResult DriverDetail(string Kierowca)
         {
-            var schedule = db.Schedules.Where(x => x.UserId == Kierowcy).LastOrDefault();
-            var user = identityDb.Users.Where(x => x.Id == Kierowcy).Select(x => x.FirstName) + " "
-                + identityDb.Users.Where(x => x.Id == Kierowcy).Select(x => x.LastName);
+            var schedule = db.Schedules.Where(x => x.UserId == Kierowca).FirstOrDefault();
+            var user = identityDb.Users.Where(x => x.Id == Kierowca).Select(x => x.FirstName).ToString() + " "
+                + identityDb.Users.Where(x => x.Id == Kierowca).Select(x => x.LastName).ToString();
 
             ViewBag.User = user;
 

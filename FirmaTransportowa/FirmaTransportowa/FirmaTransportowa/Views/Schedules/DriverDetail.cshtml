@@ -1,11 +1,11 @@
-﻿@model IEnumerable<DomainModel.Schedule>
+﻿@model DomainModel.Schedule
 
 
 @{
     ViewBag.Title = "DriverDetail";
 }
 
-<h4>Dyspozycyjność kirowcy: @Html.Raw(ViewBag.User)</h4>
+<h4>Dyspozycyjność</h4>
 
 <table class="table table-sm table-hover">
     <thead class="thead-default">
@@ -20,18 +20,15 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>@Html.DisplayFor(modelItem => item.Monday)</td>
-                <td>@Html.DisplayFor(modelItem => item.Tuesday)</td>
-                <td>@Html.DisplayFor(modelItem => item.Wednesday)</td>
-                <td>@Html.DisplayFor(modelItem => item.Thursday)</td>
-                <td>@Html.DisplayFor(modelItem => item.Friday)</td>
-                <td>@Html.DisplayFor(modelItem => item.Saturday)</td>
-                <td>@Html.DisplayFor(modelItem => item.Sunday)</td>
-            </tr>  
-        }
+        <tr>
+            <td>@Html.DisplayFor(x => x.Monday)</td>
+            <td>@Html.DisplayFor(x => x.Tuesday)</td>
+            <td>@Html.DisplayFor(x => x.Wednesday)</td>
+            <td>@Html.DisplayFor(x => x.Thursday)</td>
+            <td>@Html.DisplayFor(x => x.Friday)</td>
+            <td>@Html.DisplayFor(x => x.Saturday)</td>
+            <td>@Html.DisplayFor(x => x.Sunday)</td>
+        </tr>             
     </tbody>
 </table>
 
