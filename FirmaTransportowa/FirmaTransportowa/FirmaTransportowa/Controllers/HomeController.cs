@@ -32,6 +32,8 @@ namespace FirmaTransportowa.Controllers
 
         public ActionResult LoyalityProgram()
         {
+            ViewBag.ClientPoints = 0;
+
             return View();
         }
 

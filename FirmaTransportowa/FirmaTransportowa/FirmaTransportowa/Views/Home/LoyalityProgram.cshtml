@@ -6,7 +6,8 @@
 @section scripts {
     <script>
         function myFunction() {
-            alert("Nie wystarczająca ilość punktów!");
+            if(@ViewBag.ClientPoints < 500)
+                alert("Nie masz wystarczającej ilości punktów!");
         }
     </script>
 }
@@ -26,5 +27,5 @@
 <br /><br />
 <p>Poniżej znajduje się przycisk który pozwala wygenerować unikalny kod, który należy pokazać kierowcy aby odebrać zniżkę.</p>
 
-<p>Aktualna ilość punktów: <b>0</b></p>
+<p>Aktualna ilość punktów: <b>@Html.Raw(ViewBag.ClientPoints)</b></p>
 <button class="btn btn-default" onclick="myFunction()">Generuj kod</button>
